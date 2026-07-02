@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MaxiQueen OS: Quantum Nexus. Consola de comandos e inteligencia operacional de alto rendimiento.">
+  <title>MaxiQueen OS | Quantum Nexus</title>
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    :root {
+      --nexus-neon: #00ffcc;
+      --nexus-glow: rgba(0, 255, 204, 0.2);
+      --nexus-dark-bg: #0a0e17;
+      --nexus-card-bg: #111827;
+      --nexus-accent: #e0a82e;
+    }
+
+    body {
+      background-color: var(--nexus-dark-bg) !important;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Rediseño de Header */
+    .site-header {
+      background: rgba(11, 20, 38, 0.8) !important;
+      border-bottom: 2px solid var(--nexus-neon) !important;
+      backdrop-filter: blur(12px);
+    }
+    .brand span {
+      color: var(--nexus-neon) !important;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
+
+    /* Hero Section Modificado */
+    .hero-section {
+      background: linear-gradient(180deg, rgba(16, 24, 48, 0.5) 0%, var(--nexus-dark-bg) 100%) !important;
+      border-bottom: 1px dashed rgba(0, 255, 204, 0.2);
+    }
+    .hero-copy .eyebrow {
+      color: var(--nexus-neon) !important;
+      letter-spacing: 4px !important;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    #hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+      text-shadow: 0 0 20px var(--nexus-glow) !important;
+      color: #ffffff !important;
+    }
+
+    /* Tarjetas de Módulos Estilo Cyberpunk */
+    .module-card {
+      background: var(--nexus-card-bg) !important;
+      border: 1px solid rgba(255, 255, 255, 0.05) !important;
+      border-radius: 16px !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+      position: relative;
+      overflow: hidden;
+    }
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--nexus-neon);
+    }
+    .module-card:hover {
+      transform: translateY(-8px) scale(1.02) !important;
+      border-color: var(--nexus-neon) !important;
+      box-shadow: 0 15px 40px var(--nexus-glow) !important;
+    }
+    .card-kicker {
+      background: rgba(0, 255, 204, 0.1) !important;
+      color: var(--nexus-neon) !important;
+      padding: 4px 10px !important;
+      border-radius: 4px !important;
+      font-size: 11px !important;
+    }
+
+    /* Accesos Rápidos */
+    .access-grid a {
+      background: #1e293b !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      border-radius: 8px !important;
+      color: #cbd5e1 !important;
+      transition: all 0.3s ease !important;
+    }
+    .access-grid a:hover {
+      background: var(--nexus-neon) !important;
+      color: #000000 !important;
+      font-weight: bold;
+      box-shadow: 0 0 15px var(--nexus-neon) !important;
+    }
+
+    /* Botones principales */
+    .btn-primary {
+      background: var(--nexus-neon) !important;
+      color: #000000 !important;
+      font-weight: bold !important;
+      box-shadow: 0 4px 20px var(--nexus-glow) !important;
+    }
+    .btn-primary:hover {
+      background: #00cca3 !important;
+      box-shadow: 0 6px 25px rgba(0, 255, 204, 0.4) !important;
+    }
+
+    /* Interfaz de Chat Flotante */
+    .mq-chat {
+      border: 2px solid var(--nexus-neon) !important;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7) !important;
+      border-radius: 16px 16px 0 0 !important;
+    }
+    .mq-chat-header {
+      background: linear-gradient(90deg, #111827 0%, #1f2937 100%) !important;
+      border-bottom: 1px solid var(--nexus-neon) !important;
+    }
+    .chat-title span {
+      color: var(--nexus-neon) !important;
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" id="inicio">
+    <nav class="site-nav" aria-label="Navegacion principal">
+      <a class="brand" href="#inicio" aria-label="MaxiQueen OS inicio">
+        <img src="assets/img/Logo_Oficial_2026.png" alt="" class="brand-mark">
+        <span>NEXUS // MATRIX</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#modulos">Terminales</a>
+        <a href="#accesos">Pasarelas</a>
+        <a href="#galeria">Evidencias</a>
+        <a href="#notion">Consola</a>
+      </div>
+
+      <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Cambiar tema">
+        Modo
+      </button>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="hero-section" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true">
+        <video
+          src="assets/anime_logo.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          class="hero-video">
+        </video>
+        <img src="assets/img/MAXIQUEEN_LOGO.png" alt="" class="hero-logo-fallback">
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">CORE_AGENT_V2</p>
+        <h1 id="hero-title">“Quantum Nexus”</h1>
+        <p class="hero-lead">
+          Orquestación de flujos avanzados, automatización profunda de infraestructura digital y administración táctica de activos empresariales.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#modulos">Desplegar Consola</a>
+          <a class="btn btn-secondary" href="https://wa.me/573016625921?text=Hola%20MAXIQUEEN%20OS.%20Vengo%20desde%20la%20landing%20y%20quiero%20activar%20el%20sistema." target="_blank" rel="noopener">Enlace Táctico WhatsApp</a>
+        </div>
+
+        <div class="hero-metrics" aria-label="Indicadores del sistema">
+          <div>
+            <strong>NEXUS</strong>
+            <span>Protocolo V2</span>
+          </div>
+          <div>
+            <strong>Uptime</strong>
+            <span>Instancia Activa</span>
+          </div>
+          <div>
+            <strong>HiperCore</strong>
+            <span>Cerebro Dedicado</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="modulos" aria-labelledby="modulos-title">
+      <div class="section-heading">
+        <p class="eyebrow">Estructura Cuántica</p>
+        <h2 id="modulos-title">Matriz Modular Operativa</h2>
+        <p>
+          Bloques de comando optimizados para la gestión de datos, capas lógicas y automatizaciones escalables del sistema.
+        </p>
+      </div>
+
+      <div class="module-grid">
+        <article class="module-card">
+          <span class="card-kicker">Algorítmico</span>
+          <h3>Motor IA Financiera GROQ</h3>
+          <p>Chat, prompt del sistema y asistencia para ordenar ideas, diagnosticar necesidades y orientar al usuario.</p>
+          <a href="https://maxiqueen-os-framework.vercel.app" class="text-link">Abrir chat</a>
+        </article>
+
+        <article class="module-card">
+          <span class="card-kicker">Conversión</span>
+          <h3>CRM y conversion</h3>
+          <p>Acceso a prototipos, rutas comerciales y enlaces de prueba para convertir visitas en conversaciones reales.</p>
+          <a href="https://maxiqueen-os.vercel.app/CRM_PAG_FEB.html" target="_blank" rel="noopener" class="text-link">Ver demo CRM</a>
+        </article>
+
+        <article class="module-card">
+          <span class="card-kicker">Interactivo</span>
+          <h3>Juegos y Chat Tawk.to</h3>
+          <p>Galeria, experiencias H5 y modulos visuales para mostrar trabajo, resultados e implementaciones.</p>
+          <a href="https://play-maxi-queen-os.vercel.app" target="_blank" rel="noopener" class="text-link">Ver Play Core</a>
+        </article>
+
+        <article class="module-card">
+          <span class="card-kicker">Estructural</span>
+          <h3>Consultoria de Negocios</h3>
+          <p>Accesos a privacidad, terminos, certificados y soportes para presentar el proyecto con mas solidez.</p>
+          <a href="https://nextjs-wiia.vercel.app" class="text-link">Ver accesos Consultoria de Negocios</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell compact" id="accesos" aria-labelledby="accesos-title">
+      <div class="section-heading">
+        <p class="eyebrow">Pasarelas de Enlace</p>
+        <h2 id="accesos-title">Nodos Principales de Conexión</h2>
+      </div>
+
+      <div class="access-grid">
+        <a href="https://skillshop.credential.net/profile/cesarbedoyabarragan/wallet" target="_blank" rel="noopener">Google Skillshop Ads Certification</a>
+        <a href="https://maxiqueen-os.vercel.app/inspector%20MQ.html" target="_blank" rel="noopener">Inspector V1</a>
+        <a href="https://maxiqueen-os-app.vercel.app" target="_blank" rel="noopener">MaxiQueen OS WebApp</a>
+        <a href="https://maxiqueen-ver.vercel.app/" target="_blank" rel="noopener">Sistema de contenido 3D</a>
+        <a href="https://maxiqueen-os.vercel.app/ChatOS.html" target="_blank" rel="noopener">Tipos de chat</a>
+        <a href="https://maxiqueen-os.vercel.app/MaxiqueenIA.html" target="_blank" rel="noopener">Privacidad - cookies - terminos</a>
+      </div>
+    </section>
+
+    <section class="section-shell" id="galeria" aria-labelledby="galeria-title">
+      <div class="section-heading">
+        <p class="eyebrow">Despliegues Analíticos</p>
+        <h2 id="galeria-title">Módulos de Verificación Gráfica</h2>
+      </div>
+
+      <div class="gallery-grid">
+        <button type="button" class="gallery-item" onclick="openLightbox('assets/img/Modulo_Web.png')" aria-label="Ampliar modulo web">
+          <img src="assets/img/Modulo_Web.png" alt="Modulo web MaxiQueen OS" loading="lazy">
+        </button>
+        <button type="button" class="gallery-item" onclick="openLightbox('assets/img/Modulo_Creativo.png')" aria-label="Ampliar modulo creativo">
+          <img src="assets/img/Modulo_Creativo.png" alt="Modulo creativo MaxiQueen OS" loading="lazy">
+        </button>
+        <button type="button" class="gallery-item" onclick="openLightbox('assets/img/Modulo_Automatizacion.png')" aria-label="Ampliar modulo automatizacion">
+          <img src="assets/img/Modulo_Automatizacion.png" alt="Modulo automatizacion MaxiQueen OS" loading="lazy">
+        </button>
+        <button type="button" class="gallery-item" onclick="openLightbox('assets/img/Maxiqueen_Cloud_Chat_Ecosystem.png')" aria-label="Ampliar ecosistema de chat">
+          <img src="assets/img/Maxiqueen_Cloud_Chat_Ecosystem.png" alt="Ecosistema cloud chat MaxiQueen OS" loading="lazy">
+        </button>
+      </div>
+    </section>
+
+    <section class="section-shell compact" id="notion" aria-labelledby="notion-title">
+      <div class="section-heading">
+        <p class="eyebrow">Consola de Mando Central</p>
+        <h2 id="notion-title">Panel de Control Sincronizado</h2>
+      </div>
+
+      <div class="embed-frame">
+        <iframe
+          src="https://fantasy-pumpkin-d21.notion.site/ebd//c6102d3d774548f1b2f4ffa9069bcbc7"
+          title="Panel Notion MaxiQueen OS"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+  </main>
+
+  <a
+    class="whatsapp-float"
+    href="https://wa.me/573016625921?text=Hola%20MAXIQUEEN%20OS.%20Vengo%20desde%20la%20landing%20y%20quiero%20activar%20el%20sistema."
+    target="_blank"
+    rel="noopener"
+    aria-label="Contactar por WhatsApp">
+    WA
+  </a>
+
+   <section class="mq-chat minimized" id="mqChat" aria-label="Chat MaxiQueen AI">
+    <div class="mq-chat-header">
+      <div class="chat-title">NEXUS_CORE<span> // AI</span></div>
+      <button class="chat-toggle" type="button" onclick="toggleChat()" aria-label="Minimizar o abrir chat">Abrir</button>
+    </div>
+    
+    <div class="mq-chat-body" id="mqChatBody" aria-live="polite">
+      <div class="mq-message bot">
+        <div class="mq-bubble">Consola Quantum Nexus en línea. Sistema de procesamiento V2 listo. Introduce parámetros o comandos.</div>
+      </div>
+    </div>
+
+    <form class="mq-chat-input" id="mqChatForm" style="display: flex; align-items: center; background: #121212; border-top: 1px solid #333; padding: 8px 12px; gap: 8px; position: relative;">
+        
+        <div id="mqFileBadge" style="display: none; position: absolute; top: -35px; left: 15px; background: #00ffcc; color: #000; padding: 3px 8px; font-size: 11px; border-radius: 5px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.3); z-index: 20;"></div>
+
+        <label for="mqFileInput" style="cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; color: #888; padding: 5px;">
+            📎
+        </label>
+        <input type="file" id="mqFileInput" accept="image/*,video/*,application/pdf" style="display: none;">
+
+        <input type="text" id="mqInput" placeholder="Inicializar comando o adjuntar datos..." autocomplete="off" aria-label="Mensaje para MaxiQueen AI" style="flex: 1; background: transparent; border: none; color: #fff; outline: none; padding: 8px 4px; font-size: 14px;">
+
+        <button id="mqSendBtn" type="submit" style="background: #00ffcc; color: #000; border: none; padding: 6px 14px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 13px; box-shadow: 0 0 10px rgba(0,255,204,0.3);">
+            Ejecutar
+        </button>
+    </form>
+
+    <div class="audio-controls" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; padding: 6px; background: #0a0a0a; border-top: 1px solid #222;">
+        <button type="button" id="mqVoiceBtn" onclick="MQAudio.resume()" style="background: #1a1a1a; border: 1px solid #00ffcc; color: #00ffcc; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">
+            🎙️ Telemetría ON
+        </button>
+        <button type="button" id="mqPauseBtn" onclick="MQAudio.pause()" style="background: #1a1a1a; border: 1px solid #444; color: #aaa; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;">
+            ⏸️ Pausar
+        </button>
+        <button type="button" id="mqRepeatBtn" onclick="MQAudio.speak(MQAudio.lastText)" style="background: #1a1a1a; border: 1px solid #444; color: #aaa; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;">
+            🔁 Replay
+        </button>
+        <button type="button" id="mqStopBtn" onclick="MQAudio.stop()" style="background: #1a1a1a; border: 1px solid #522; color: #ff5555; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;">
+            ⏹️ Mute
+        </button>
+    </div>
+  </section>
+
+  <button class="mq-bubble-launcher" type="button" onclick="toggleChat()" aria-label="Abrir chat MaxiQueen AI">
+    <video
+      src="assets/anime_logo.mp4"
+      autoplay
+      loop
+      muted
+      playsinline>
+    </video>
+  </button>
+
+  <footer class="site-footer">
+   <section class="section-shell" id="precios" aria-labelledby="precios-title" style="background: #0f172a; padding: 60px 20px; border-top: 1px solid #1e293b;">
+  <div class="section-heading" style="text-align: center; margin-bottom: 40px;">
+    <p class="eyebrow" style="color: #00ffcc; letter-spacing: 2px;">Acceso Inmediato</p>
+    <h2 id="precios-title" style="color: #fff; font-size: 2.5rem;">Adquiere tu Instancia Operativa</h2>
+    <p style="color: #94a3b8;">Elige el nivel de aceleración que necesita tu negocio hoy mismo.</p>
+  </div>
+
+  <div class="module-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto;">
+    
+    <!-- PLAN INDIVIDUAL / PILOTO -->
+    <article class="module-card" style="padding: 30px; background: #111827; border: 1px solid #1e293b; border-radius: 16px; position: relative;">
+      <span class="card-kicker" style="background: rgba(0, 255, 204, 0.1); color: #00ffcc; padding: 4px 8px; border-radius: 4px; font-size: 12px;">Licencia Mensual</span>
+      <h3 style="color: #fff; margin: 15px 0 10px 0; font-size: 1.8rem;">Quantum Agent V2</h3>
+      <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Tu propio router inteligente activo 24/7 con soporte integrado, panel de control y módulo IA listo para operar.</p>
+      
+      <div style="margin-bottom: 25px;">
+        <span style="font-size: 2.5rem; font-weight: bold; color: #fff;">$35990</span>
+        <span style="color: #64748b;"> / mes (Todo Incluido)</span>
+      </div>
+
+      <!-- ENLACE DIRECTO DE COMPRA (HOTMART O CHECKOUT) -->
+      <a href="https://pay.hotmart.com/P103285828N?bid=1782959907491" target="_blank" rel="noopener" class="btn btn-primary" style="display: block; text-align: center; padding: 12px; background: #00ffcc; color: #000; font-weight: bold; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 15px rgba(0,255,204,0.3);">
+        Comprar Acceso Inmediato
+      </a>
+    </article>
+
+    <!-- PLAN FULL ECOSISTEMA -->
+    <article class="module-card" style="padding: 30px; background: #111827; border: 2px solid #00ffcc; border-radius: 16px; position: relative;">
+      <span class="card-kicker" style="background: #00ffcc; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">Recomendado</span>
+      <h3 style="color: #fff; margin: 15px 0 10px 0; font-size: 1.8rem;">Full Ecosistema OS</h3>
+      <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">La suite completa: Inteligencia Financiera, CRM de conversión, Juegos H5 y panel operativo sincronizado.</p>
+      
+      <div style="margin-bottom: 25px;">
+        <span style="font-size: 2.5rem; font-weight: bold; color: #fff;">$75990</span>
+        <span style="color: #64748b;"> / mes (Todo Incluido)</span>
+      </div>
+
+      <!-- ENLACE DIRECTO DE COMPRA -->
+      <a href="https://hotmart.com/es/marketplace/productos/marketing-digital-con-cesar-b/P103285828N" target="_blank" rel="noopener" class="btn btn-primary" style="display: block; text-align: center; padding: 12px; background: #00ffcc; color: #000; font-weight: bold; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 15px rgba(0,255,204,0.3);">
+        Activar Ecosistema Completo
+      </a>
+    </article>
+
+  </div>
+</section>
+  </footer>
+
+  <div id="mq-lightbox" class="lightbox" aria-hidden="true">
+    <button type="button" class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar imagen">Cerrar</button>
+    <img id="mq-lightbox-img" alt="">
+  </div>
+
+  <script src="js/theme-toggle.js" defer></script>
+  <script src="js/systemPrompt.js" defer></script>
+  <script src="js/gallery.js" defer></script>
+  <script src="js/chat-ui.js" defer></script>
+</body>
+</html>
